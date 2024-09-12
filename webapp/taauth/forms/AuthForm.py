@@ -1,6 +1,12 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
-class LoginForm(forms.Form):
+class LoginForm(AuthenticationForm):
+
+    def get_success_url(self):
+        # Check if there is a next parameter in the request, if so, redirect to it
+        return self.get_redirect_url() or '/home'
+    
     username = forms.CharField(
         widget=forms.TextInput(attrs={
             'placeholder': 'Enter your username',

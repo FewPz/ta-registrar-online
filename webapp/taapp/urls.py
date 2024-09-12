@@ -1,6 +1,6 @@
 from django.urls import path
-from taapp.views import LoginView
+from taapp.views import *
 
 urlpatterns = [
-    path('login/', LoginView.as_view(), name='login')
+    path('', DashboardView.as_view(), name='dashboard'),
 ]

@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    # path('admin/', admin.site.urls)
-    path('', include('taapp.urls'))
+    path('', include('taauth.urls')),
+    path('home/', include('taapp.urls'))
 ]

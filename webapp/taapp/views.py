@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import AuthForm
-
-# Create your views here.
-class LoginView(View):
+# from django.contrib.auth.decorators import login_required
+    
+class DashboardView(View):
     
     def get(self, request):
-        form = AuthForm.LoginForm()
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'dashboard.html')

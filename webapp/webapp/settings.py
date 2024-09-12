@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tailwind',
     'taapp',
+    'taauth'
 ]
 
 import os
@@ -68,12 +68,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',  # Fallback
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-]
-
 ROOT_URLCONF = 'webapp.urls'
 
 TEMPLATES = [
@@ -91,7 +85,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'webapp.wsgi.application'
 
 
@@ -108,6 +101,16 @@ DATABASES = {
         'PORT': config('DATABASE_PORT', default='3306'),
     }
 }
+
+# settings.py
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',  # Use bcrypt with SHA-256
+    'django.contrib.auth.hashers.BCryptPasswordHasher',  # Alternatively, plain bcrypt (less secure)
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+]
+
 
 
 # Password validation
@@ -128,6 +131,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "taauth.User"
+
+LOGIN_REDIRECT_URL = "dashboard"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
